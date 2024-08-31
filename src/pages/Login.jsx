@@ -3,11 +3,12 @@ import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import Textbox from '../components/Textbox';
 import Button from '../components/Button';
+import { useSelector } from 'react-redux';
 // import { Button } from '@headlessui/react';
 
 const Login = () => {
  
-    const user="";
+    const {user}=useSelector((state)=>state.auth);
   const {
     register, 
     handleSubmit, 
@@ -20,6 +21,8 @@ const Login = () => {
       console.log("Submitted");
     }
     
+    console.log(user)
+
     // useEffect: it's used to check if the user is logged in and, if so, redirects to the /dashboard route.
     useEffect(()=>{
       user && navigate("/dashboard");
