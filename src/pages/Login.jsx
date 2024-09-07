@@ -7,7 +7,6 @@ import { useSelector } from 'react-redux';
 // import { Button } from '@headlessui/react';
 
 const Login = () => {
- 
     const {user}=useSelector((state)=>state.auth);
   const {
     register, 
@@ -24,6 +23,7 @@ const Login = () => {
     console.log(user)
 
     // useEffect: it's used to check if the user is logged in and, if so, redirects to the /dashboard route.
+    //if the user exists, then directly redirects to dashboard
     useEffect(()=>{
       user && navigate("/dashboard");
     },[user]);
@@ -97,11 +97,7 @@ const Login = () => {
                   className='w-full h-10 bg-blue-700 text-white rounded-full'>
 
                 </Button>
-
-
-
               </div>
-
             </form>
         </div>
 

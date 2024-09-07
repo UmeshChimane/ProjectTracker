@@ -20,11 +20,11 @@ const authSlice =createSlice({
             state.user =null;
             localStorage.removeItem("userInfo");
         },
-        setOpenSiderbar :(state,action)=>{
+        setOpenSidebar :(state,action)=>{
             state.isSidebarOpen=action.payload;
         },
     },
 });
 
-export const {setCradentials, logout, setOpenSiderbar}=authSlice.actions;
+export const {setCradentials, logout, setOpenSidebar}=authSlice.actions;
 export default authSlice.reducer;
