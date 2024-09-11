@@ -532,9 +532,9 @@ export const summary = {
       },
       {
         _id: "65c3176a0fd860f958baa099",
-        name: "Emily Wilson",
-        title: "Data Analyst",
-        role: "Analyst",
+        name: "Umesh Chimane",
+        title: "Android Developer",
+        role: "Devloper",
         isActive: true,
         createdAt: "2024-02-07T05:38:50.816Z",
       },
