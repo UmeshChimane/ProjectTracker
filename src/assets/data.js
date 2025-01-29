@@ -38,7 +38,7 @@ export const summary = {
         activities: [],
         subTasks: [
           {
-            title: "Task manager youtube tutorial",
+            title: "Add some data",
             date: "2024-02-09T00:00:00.000Z",
             tag: "tutorial",
             _id: "65c5f153b5204a81bde866c8",
@@ -522,14 +522,14 @@ export const summary = {
       },
     ],
     users: [
-      {
-        _id: "65c5f27fb5204a81bde86833",
-        name: "New User",
-        title: "Designer",
-        role: "Developer",
-        isActive: true,
-        createdAt: "2024-02-09T09:38:07.765Z",
-      },
+      //{
+        // _id: "65c5f27fb5204a81bde86833",
+        // name: "New User",
+        // title: "Designer",
+        // role: "Developer",
+        // isActive: true,
+        // createdAt: "2024-02-09T09:38:07.765Z",
+     // },
       {
         _id: "65c3176a0fd860f958baa099",
         name: "Umesh Chimane",
@@ -540,7 +540,7 @@ export const summary = {
       },
       {
         _id: "65c317360fd860f958baa08e",
-        name: "Alex Johnson",
+        name: "Aditya More",
         title: "UX Designer",
         role: "Designer",
         isActive: true,
@@ -548,7 +548,7 @@ export const summary = {
       },
       {
         _id: "65c30b96e639681a13def0b5",
-        name: "Jane Smith",
+        name: "Aryan Asati",
         title: "Product Manager",
         role: "Manager",
         isActive: true,
@@ -556,7 +556,7 @@ export const summary = {
       },
       {
         _id: "65c202d4aa62f32ffd1303cc",
-        name: "Codewave Asante",
+        name: "Sahil Babar",
         title: "Administrator",
         role: "Admin",
         createdAt: "2024-02-06T09:58:44.794Z",
@@ -773,7 +773,7 @@ export const summary = {
     },
     {
       _id: "65c45fb6af6ec0118be94052",
-      title: "Task Manager Youtube Video",
+      title: "Project Tracker",
       date: "2024-02-11T00:00:00.000Z",
       priority: "medium",
       stage: "completed",
@@ -800,21 +800,21 @@ export const summary = {
         {
           type: "started",
           activity: "Project completed!!",
-          date: "2024-02-08T18:13:14.717Z",
-          by: { _id: "65c202d4aa62f32ffd1303cc", name: "Codewave" },
+          date: "2024-10-08T18:13:14.717Z",
+          by: { _id: "65c202d4aa62f32ffd1303cc", name: "Mountreach" },
           _id: "65c51b998064dfd208b3f9",
         },
         {
           type: "commented",
           activity: "Project completed!!",
-          date: "2024-02-08T18:13:14.717Z",
+          date: "2025-01-08T18:13:14.717Z",
           by: { _id: "65c202d4aa62f32ffd1303cc", name: "Codewave" },
           _id: "65c51b98064df97d208b3f9",
         },
         {
           type: "completed",
           activity: "Project completed!!",
-          date: "2024-02-08T18:13:14.717Z",
+          date: "2024-03-08T18:13:14.717Z",
           by: { _id: "65c202d4aa62f32ffd1303cc", name: "Codewave" },
           _id: "65c51b998064df97d208b3f9",
         },
