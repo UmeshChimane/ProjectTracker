@@ -19,7 +19,7 @@ import Tabs from "../components/Tabs";
 import { PRIOTITYSTYELS, TASK_TYPE, getInitials } from "../utils";
 import Loading from "../components/Loader";
 import Button from "../components/Button";
-import { useGetSingletaskQuery } from "../redux/slices/api/taskApiSlice";
+import { useGetSingletaskQuery, usePostTaskActivityMutation } from "../redux/slices/api/taskApiSlice";
 import Loader from "../components/Loader";
 
 const assets = [
@@ -90,7 +90,7 @@ const act_types = [
 
 const TaskDetails = () => {
   const { id } = useParams();
-  const {data,isLoading,error}=useGetSingletaskQuery(id);
+  const {data,isLoading,refetch}=useGetSingletaskQuery(id);
 
   const [selected, setSelected] = useState(0);
   const task = data?.task; 
@@ -245,7 +245,9 @@ if (!task) {
           </>
         ) : (
           <>
-            <Activities activity={task?.activities} id={id} />
+            <Activities activity={data?.task?.activities} 
+            id={id} 
+            refetch={refetch}/>
           </>
         )}
       </Tabs>
@@ -253,12 +255,34 @@ if (!task) {
   );
 };
 
-const Activities = ({ activity, id }) => {
+const Activities = ({ activity, id, refetch }) => {
   const [selected, setSelected] = useState(act_types[0]);
   const [text, setText] = useState("");
-  const isLoading = false;
 
-  const handleSubmit = async () => {};
+  const [postActivity,{isLoading}]=usePostTaskActivityMutation()
+
+  const handleSubmit = async () => {
+    try {
+      const activityData = {
+        type:selected?.toLowerCase(),
+        activity:text,
+      }
+      const result =await postActivity({
+          data : activityData,
+          id
+
+        }).unwrap();
+
+
+        setText("");
+        toast.success(result?.message);
+        refetch();
+    } catch (error) {
+      console.log(error);
+      console.error(error?.data?.message || error.error);
+      
+    }
+  };
 
   const Card = ({ item }) => {
     return (
@@ -294,7 +318,7 @@ const Activities = ({ activity, id }) => {
             <Card
               key={index}
               item={el}
-              isConnected={index < activity.length - 1}
+              isConnected={index < activity?.length - 1}
             />
           ))}
         </div>
