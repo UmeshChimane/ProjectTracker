@@ -19,6 +19,8 @@ import Tabs from "../components/Tabs";
 import { PRIOTITYSTYELS, TASK_TYPE, getInitials } from "../utils";
 import Loading from "../components/Loader";
 import Button from "../components/Button";
+import { useGetSingletaskQuery } from "../redux/slices/api/taskApiSlice";
+import Loader from "../components/Loader";
 
 const assets = [
   "https://images.pexels.com/photos/2418664/pexels-photo-2418664.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
@@ -85,12 +87,35 @@ const act_types = [
   "Bug",
   "Assigned",
 ];
-// everything is done till above
+
 const TaskDetails = () => {
   const { id } = useParams();
+  const {data,isLoading,error}=useGetSingletaskQuery(id);
 
   const [selected, setSelected] = useState(0);
-  const task = tasks[3];
+  const task = data?.task; 
+
+console.log("Fetching Task ID:", id);
+console.log("API Response:", data);
+console.log("Task Data:", data?.task);
+
+// Add this check to prevent accessing properties of undefined
+if (isLoading) {
+  return (
+    <div className="py-10">
+      <Loader />
+    </div>
+  );
+}
+
+if (!task) {
+  return (
+    <div className="py-10 text-center text-red-500">
+      Task not found or failed to load.
+    </div>
+  );
+}
+
 
   return (
     <div className='w-full flex flex-col gap-3 mb-4 overflow-y-hidden'>
@@ -110,7 +135,6 @@ const TaskDetails = () => {
                       bgColor[task?.priority]
                     )}
                   >
-                    {/* above code okk */}
                     <span className='text-lg'>{ICONS[task?.priority]}</span>
                     <span className='uppercase'>{task?.priority} Priority</span>
                   </div>
@@ -194,7 +218,6 @@ const TaskDetails = () => {
                               {el?.tag}
                             </span>
                           </div>
-                {/* done */}
 
                           <p className='text-gray-700'>{el?.title}</p>
                         </div>

@@ -1,9 +1,13 @@
-import React from 'react'
-
 const Loader = () => {
   return (
-    <div>Loader</div>
-  )
-}
+    <div className='dots-container'>
+      <div className='dot'></div>
+      <div className='dot'></div>
+      <div className='dot'></div>
+      <div className='dot'></div>
+      <div className='dot'></div>
+    </div>
+  );
+};
 
-export default Loader
+export default Loader;

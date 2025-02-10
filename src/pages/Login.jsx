@@ -4,6 +4,13 @@ import { useNavigate } from 'react-router-dom'
 import Textbox from '../components/Textbox';
 import Button from '../components/Button';
 import { useSelector } from 'react-redux';
+import { useLoginMutation } from '../redux/slices/api/authApiSlice';
+import { Toaster, toast } from "sonner";
+import { useDispatch } from "react-redux";
+import { setCredentials } from "../redux/slices/authSlice"; // Import action
+import Loader from '../components/Loader';
+
+
 // import { Button } from '@headlessui/react';
 
 const Login = () => {
@@ -14,12 +21,29 @@ const Login = () => {
     formState:{errors},
     }= useForm();
   
+    const dispatch = useDispatch();
     const navigate =useNavigate();
 
+    const [login,{isLoading}]=useLoginMutation();
+
     const submitHandler =async(data)=>{
-      console.log("Submitted");
+      // console.log("Submitted");
+      try {
+        const result= await login(data).unwrap();
+
+        console.log("Login Response:", result); // ✅ Logs correct user data
+
+         // ✅ Store user in Redux
+        dispatch(setCredentials(result)); 
+        toast.success("Login successful!");
+
+        navigate("/");
+
+      } catch (error) {
+        console.log(error);
+        toast.error(error?.data?.message || error.message); 
+      }
     }
-    
     console.log(user)
 
     // useEffect: it's used to check if the user is logged in and, if so, redirects to the /dashboard route.
@@ -91,12 +115,12 @@ const Login = () => {
                   Forget Password ?
                 </span>
 
-                <Button
+                {isLoading ? <Loader/> : <Button
                   type='sybmit'
                   label='Submit'
                   className='w-full h-10 bg-blue-700 text-white rounded-full'>
 
-                </Button>
+                </Button>}
               </div>
             </form>
         </div>
