@@ -32,6 +32,7 @@ const Tasks = () => {
   const [open, setOpen] = useState(false);
 
   const status = params?.status || "";
+  
   const {data,isLoading}=useGetAllTaskQuery({
     strQuery:status,
     isTrashed:"",

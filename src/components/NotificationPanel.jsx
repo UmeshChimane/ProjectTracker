@@ -56,8 +56,8 @@ const NotificationPanel = () => {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState(null);
 
-   const { data, refetch } = useGetNotificationsQuery();
-   const [markAsRead] = useMarkNotiAsReadMutation();
+  const { data = [], refetch } = useGetNotificationsQuery();
+  const [markAsRead] = useMarkNotiAsReadMutation();
 
   const readHandler = async(type, id) => {
     await markAsRead({type,id}).unwrap();
@@ -66,7 +66,7 @@ const NotificationPanel = () => {
   };
 
   const viewHandler = async(el) => {
-    setSelected(el),
+    setSelected(el);
     readHandler("one",el._id);
     setOpen(true);
 

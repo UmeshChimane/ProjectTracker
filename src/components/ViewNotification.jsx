@@ -9,7 +9,7 @@ const ViewNotification = ({open,setOpen,el}) => {
     <ModalWrapper open={open} setOpen={setOpen}>
       <div className='py-4 w-full flex flex-col gap-4 items-center justify-center'>
         <Dialog.Title as='h3' className={'font-semibold text-lg'}>
-          {el?.task?.Title}
+          {el?.task?.title}
         </Dialog.Title>
 
         <p className='text-start text-gray-500'>{el?.text}</p>
