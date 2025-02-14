@@ -29,7 +29,7 @@ const UserAvatar = () => {
       console.error("Logout error:", error);  // Log the error details
       toast.error(error?.data?.message || "Something Went Wrong");
     }
-  };
+  };  
 
   return (
     <>

@@ -19,6 +19,7 @@ const authSlice =createSlice({
         logout:(state,action)=>{
             state.user =null;
             localStorage.removeItem("userInfo");
+            sessionStorage.clear(); // Clear session storage
         },
         setOpenSidebar :(state,action)=>{
             state.isSidebarOpen=action.payload;

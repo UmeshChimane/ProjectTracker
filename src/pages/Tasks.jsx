@@ -12,6 +12,7 @@ import BoardView from "../components/BoardView";
 import { tasks } from "../assets/data";
 import Table from "../components/task/Table";
 import AddTask from "../components/task/AddTask";
+import { useSelector } from "react-redux";
 import { useGetAllTaskQuery } from "../redux/slices/api/taskApiSlice";
 
 const TABS = [
@@ -27,6 +28,7 @@ const TASK_TYPE = {
 
 const Tasks = () => {
   const params = useParams();
+  const { user } = useSelector((state) => state.auth); // Get user data
 
   const [selected, setSelected] = useState(0);
   const [open, setOpen] = useState(false);
@@ -47,7 +49,7 @@ const Tasks = () => {
     <div className='w-full'>
       <div className='flex items-center justify-between mb-4'>
         <Title title={status ? `${status} Tasks` : "Tasks"} />
-
+{/*
         {!status && (
           <Button
             onClick={() => setOpen(true)}
@@ -56,7 +58,19 @@ const Tasks = () => {
             className='flex flex-row-reverse gap-1 items-center bg-blue-600 text-white rounded-md py-2 2xl:py-2.5'
           />
         )}
+   */}     
+        {!status && user?.isAdmin && ( // Hide button if user is not admin
+          <Button
+            onClick={() => setOpen(true)}
+            label='Create Task'
+            icon={<IoMdAdd className='text-lg' />}
+            className='flex flex-row-reverse gap-1 items-center bg-blue-600 text-white rounded-md py-2 2xl:py-2.5'
+          />
+        )}
       </div>
+
+
+
 
       <Tabs tabs={TABS} setSelected={setSelected}>
         {!status && (
